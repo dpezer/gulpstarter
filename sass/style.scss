@@ -1,12 +1,12 @@
 /*!
- * Bootstrap v4.0.0 (https://getbootstrap.com)
+ * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 @import "bootstrap/functions";
-@import "variables"; // from original Bootstrap variables
+@import "variables";
 @import "bootstrap/mixins";
 @import "bootstrap/root";
 @import "bootstrap/reboot";
@@ -41,6 +41,7 @@
 @import "bootstrap/utilities";
 @import "bootstrap/print";
 
+
 /*!
  * Custom imports
  */
@@ -53,4 +54,4 @@
 @import "animations";
 @import "layout/global";
 @import "layout/header";
-@import "layout/footer";
+@import "layout/footer"; 
