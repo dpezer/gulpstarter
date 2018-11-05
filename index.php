@@ -34,7 +34,7 @@
 </header>
 <main role="main" class="container">
 	<h1 class="mt-5">Home</h1>
-	<p>This is Bootstrap 4.0 Gulp starter theme</p>
+	<p>This is Bootstrap 4.1 Gulp starter theme</p>
 </main>
 <footer class="footer">
 	<div class="container">
@@ -42,8 +42,9 @@
 	</div>
 </footer>
 <!-- JavaScripts -->
-<script src="js/jquery/jquery-3.3.1.js"></script>
-<script src="js/popper/popper.js"></script>
-<script src="js/bootstrap/bootstrap.js"></script>
+<script src="js/libs/jquery/jquery-3.3.1.min.js"></script>
+<script src="js/libs/popper/popper.min.js"></script>
+<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+<script src="js/scripts.min.js"></script>
 </body>
 </html>

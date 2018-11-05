@@ -25,6 +25,14 @@
       "ie 10"
     ]
   },
+  "scripts": {
+    "src": "../js/compile/**/*.js",
+    "dest": "../js"
+  },
+  "js": {
+    "src": "../js/scripts.js",
+    "dest": "../js"
+  },
   "css": {
     "src": "../css/style.css",
     "dest": "../css"

@@ -1,0 +1,1 @@
+console.log('Custom file init test ...');
