@@ -34,7 +34,7 @@
 </header>
 <main role="main" class="container">
 	<h1 class="mt-5">Home</h1>
-	<p>This is Bootstrap 4.1 Gulp starter theme</p>
+	<p>This is Bootstrap 4.3.1 Gulp starter theme</p>
 </main>
 <footer class="footer">
 	<div class="container">

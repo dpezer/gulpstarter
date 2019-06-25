@@ -18,12 +18,12 @@
       "errLogToConsole": true,
       "includePaths": []
     },
-    "autoprefixer": [
-      "last 2 versions",
-      "> 1%",
-      "ie 9",
-      "ie 10"
-    ]
+    "browserslist": [
+		"last 1 version",
+		"> 1%",
+		"maintained node versions",
+		"not dead"
+	]
   },
   "scripts": {
     "src": "../js/compile/**/*.js",

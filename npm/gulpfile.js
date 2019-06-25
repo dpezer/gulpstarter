@@ -57,10 +57,10 @@ $.loadSubtasks('gulp/tasks/*.js', $, config, messages);
 
 // Default Gulp task to Run
 gulp.task('default', function() {
-	gulp.start('build', 'watch', 'scripts', 'minify-js');
+	gulp.series('build', 'watch', 'scripts', 'minify-js');
 });
 
 // Gulp build task to run all tasks just once
 gulp.task('build', function() {
-	gulp.start('styles', 'minify-css', 'scripts', 'minify-js');
+	gulp.series('styles', 'minify-css', 'scripts', 'minify-js');
 });
