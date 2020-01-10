@@ -1,66 +1,56 @@
-/**
- * Gulp task runner for managing assets in a project.
- *
- * Before running first task make sure you have all node modules installed.
- * To do so navigate to this folder and run the following command:
- *
- * @command: npm install
- *
- * Tasks available:
- *
- * - gulp (default)
- * First runs the build task to build all the assets,
- * then runs the watch task to watch for changes on the files.
- *
- * - gulp build
- * Runs only the initial tasks to build all the assets.
- *
- */
+// Modules
+const {src, dest, watch, series} = require('gulp');
+const autoprefixer  = require('autoprefixer');
+const cssnano       = require('cssnano');
+const concat        = require('gulp-concat');
+const postcss       = require('gulp-postcss');
+const replace       = require('gulp-replace');
+const sass          = require('gulp-sass');
+const sourcemaps    = require('gulp-sourcemaps');
+const uglify        = require('gulp-uglify');
+const notify        = require('gulp-notify');
+const cleanCSS      = require('gulp-clean-css');
+const rename        = require('gulp-rename');
+const fs            = require('fs');
 
-'use strict';
+// File paths
+const files = {
+  scssPath: '../scss/**/*.scss',
+  cssPath: '../css/',
+  cssFile: '../css/style.css'
+};
 
-// Include gulp
-var gulp = require('gulp');
-
-// Config file
-var config = require('./gulp/config.json')
-
-// Auto load all required plugins
-var $ = require('gulp-load-plugins')({
-	pattern: '*',
-	scope: 'dependencies',
-	rename: {
-		'jshint': 'jshintCore',
-		'jshint-stylish': 'stylish',
-	}
-});
-
-// Messages data for notify to display
-var messages = {
-	error: function(err) {
-		$.notify.onError({
-			title: config.messages.error.title,
-			message: config.messages.error.message,
-		}) (err);
-
-		this.emit('end');
-	},
-	success: {
-		title: config.messages.success.title,
-		message: config.messages.success.message,
-		onLast: true
-	}
+// Compile SCSS
+function scssTask() {
+  return src(files.scssPath)
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(files.cssPath))
+    .pipe(notify('Compile: success!')
+    );
 }
 
-// Load tasks from files
-$.loadSubtasks('gulp/tasks/*.js', $, config, messages);
+// Minify
+function minifyTask() {
+  if (fs.existsSync(files.cssFile)) {
+    return src(files.cssFile)
+      .pipe(cleanCSS())
+      .pipe(rename({
+        suffix: '.min'
+      }))
+      .pipe(dest(files.cssPath));
+  }
+}
 
-// Default Gulp task to Run
-gulp.task('default', function() {
-	gulp.series('build', 'watch', 'scripts', 'minify-js');
-});
+// Watch
+function watchTask() {
+  watch([files.scssPath], series(scssTask, minifyTask));
+}
 
-// Gulp build task to run all tasks just once
-gulp.task('build', function() {
-	gulp.series('styles', 'minify-css', 'scripts', 'minify-js');
-});
+// Default
+exports.default = series(
+  series(scssTask, minifyTask),
+  watchTask
+);

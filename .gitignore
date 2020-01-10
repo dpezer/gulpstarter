@@ -1,7 +1,0 @@
-# OS X files
-.DS_Store
-
-# Ignore compiled files
-css/
-js/scripts.js
-js/scripts.min.js
